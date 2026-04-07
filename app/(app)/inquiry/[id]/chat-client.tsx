@@ -86,14 +86,14 @@ export default function InquiryChatClient({
   return (
     <div className="flex flex-col h-[calc(100vh-64px)] md:h-screen bg-background">
       {/* Header */}
-      <header className="p-4 border-b border-[var(--color-gold)]/10 bg-card-bg/50 backdrop-blur flex items-center justify-between z-10 shrink-0">
+      <header className="p-4 border-b border-[var(--color-blue-glow)]/20 bg-card-bg/50 backdrop-blur flex items-center justify-between z-10 shrink-0 glow-box-blue">
         <div className="flex items-center gap-3">
           <Link href="/dashboard" className="p-2 text-foreground/50 hover:text-[var(--color-gold)] transition-colors">
             <ArrowLeft size={20} />
           </Link>
           <div>
-            <h2 className="font-heading text-lg text-[var(--color-gold)]">
-              {title || (currentId === 'new' ? 'New Contemplation' : 'Reflecting...')}
+            <h2 className="font-heading text-lg text-[var(--color-gold)] glow-text">
+              {title || (currentId === 'new' ? 'New Conversation' : 'Chatting...')}
             </h2>
           </div>
         </div>
@@ -103,11 +103,11 @@ export default function InquiryChatClient({
       <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center space-y-6 animate-in fade-in duration-1000 max-w-lg mx-auto">
-             <div className="w-20 h-20 rounded-full bg-[var(--color-gold)]/5 flex items-center justify-center border border-[var(--color-gold)]/20 shadow-[0_0_50px_rgba(201,168,76,0.1)]">
-               <ScrollText className="w-10 h-10 text-[var(--color-gold)]" />
+             <div className="w-20 h-20 rounded-full bg-[var(--color-gold)]/5 flex items-center justify-center border border-[var(--color-gold)]/20 shadow-[0_0_50px_rgba(201,168,76,0.1)] glow-box-amber">
+               <ScrollText className="w-10 h-10 text-[var(--color-gold)] glow-text" />
              </div>
-             <p className="font-body text-xl text-foreground/90 leading-relaxed italic">
-               "Welcome, seeker of truth. I am the Archivist of the Eternal Song. What burden do you carry, or what light do you seek today?"
+             <p className="font-body text-xl text-foreground/90 leading-relaxed font-medium">
+               "Hi there. I'm GitaVerse, your inner guide. Tell me what's on your mind today."
              </p>
           </div>
         )}
@@ -176,13 +176,13 @@ export default function InquiryChatClient({
       </div>
 
       {/* Input */}
-      <div className="p-4 bg-background border-t border-[var(--color-gold)]/10 shrink-0">
+      <div className="p-4 bg-background border-t border-[var(--color-blue-glow)]/10 shrink-0 glow-box-blue">
         <div className="max-w-3xl mx-auto">
-          <form onSubmit={handleSubmit} className="relative flex items-end gap-2 bg-card-bg border border-[var(--color-gold)]/20 rounded-xl p-2 focus-within:border-[var(--color-gold)]/60 transition-colors shadow-sm">
+          <form onSubmit={handleSubmit} className="relative flex items-end gap-2 bg-card-bg border border-[var(--color-gold)]/20 rounded-xl p-2 focus-within:border-[var(--color-gold)]/60 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(226,179,74,0.1)]">
             <textarea
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder="Whisper your inquiry to the archive..."
+              placeholder="Type your message..."
               className="w-full max-h-32 min-h-[44px] bg-transparent resize-none outline-none py-3 px-4 font-body text-foreground placeholder:text-foreground/30 leading-relaxed"
               rows={1}
               onKeyDown={e => {
@@ -201,7 +201,7 @@ export default function InquiryChatClient({
             </button>
           </form>
           <div className="text-center mt-2">
-            <span className="text-[10px] text-foreground/30 font-body tracking-widest uppercase">Answers echo ancient wisdom, not human counsel</span>
+            <span className="text-[10px] text-foreground/40 font-body tracking-wider">Thoughtful advice guided by the Gita. Allow for moments of reflection.</span>
           </div>
         </div>
       </div>

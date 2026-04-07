@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.1-70b-instruct',
         messages: [
-          { role: 'system', content: 'Generate a poetic 3-5 word title summarizing this spiritual dialogue topic based on the user\'s message. Return ONLY the title, nothing else. No quotes, no markdown.' },
+          { role: 'system', content: 'Generate a warm, natural 3-5 word title summarizing this personal conversation/topic based on the user\'s message. Return ONLY the title, nothing else. No quotes, no markdown.' },
           { role: 'user', content: firstMessage }
         ],
       }),

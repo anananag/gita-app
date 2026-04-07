@@ -14,7 +14,7 @@ export default function AppLayout({
 }) {
   const [isDarkMode, setIsDarkMode] = useState(true)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [username, setUsername] = useState<string>('Seeker')
+  const [username, setUsername] = useState<string>('Friend')
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
@@ -24,7 +24,7 @@ export default function AppLayout({
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
-        setUsername(user.user_metadata?.username || 'Seeker')
+        setUsername(user.user_metadata?.username || 'Friend')
       }
     }
     getUser()
@@ -52,15 +52,15 @@ export default function AppLayout({
 
   const navLinks = [
     { name: 'Wisdom', href: '/dashboard', icon: BookOpen },
-    { name: 'Archive', href: '/archive', icon: ScrollText },
-    { name: 'Profile', href: '/profile', icon: User },
+    { name: 'Your Story', href: '/archive', icon: ScrollText },
+    { name: 'Account', href: '/profile', icon: User },
   ]
 
   return (
     <div className="min-h-screen bg-background flex flex-col md:flex-row transition-colors duration-300">
       {/* Mobile Top Bar */}
-      <div className="md:hidden flex items-center justify-between p-4 border-b border-[var(--color-gold)]/10">
-        <h1 className="font-heading text-xl text-[var(--color-gold)] tracking-widest uppercase">Gita AI</h1>
+      <div className="md:hidden flex items-center justify-between p-4 border-b border-[var(--color-gold)]/10 glow-box-blue">
+        <h1 className="font-heading text-xl text-[var(--color-gold)] tracking-widest uppercase glow-text">GitaVerse</h1>
         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-foreground p-2">
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -68,12 +68,12 @@ export default function AppLayout({
 
       {/* Sidebar */}
       <aside className={clsx(
-        "fixed md:sticky top-0 left-0 h-screen w-64 border-r border-[var(--color-gold)]/10 bg-card-bg/80 backdrop-blur-md flex flex-col z-40 transition-transform duration-300 ease-in-out md:translate-x-0",
+        "fixed md:sticky top-0 left-0 h-screen w-64 border-r border-[var(--color-gold)]/10 bg-card-bg/80 backdrop-blur-md flex flex-col z-40 transition-transform duration-300 ease-in-out md:translate-x-0 glow-box-blue",
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="p-6 border-b border-[var(--color-gold)]/10 hidden md:block">
-          <h1 className="font-heading text-2xl text-[var(--color-gold)] tracking-widest uppercase">Gita AI</h1>
-          <p className="font-body text-xs italic text-foreground/60 mt-1">Archivist of the Eternal Song</p>
+          <h1 className="font-heading text-3xl text-[var(--color-gold)] tracking-widest uppercase glow-text">GitaVerse</h1>
+          <p className="font-body text-xs italic text-foreground/60 mt-1">Talk to someone who gets it.</p>
         </div>
 
         <div className="p-6 border-b border-[var(--color-gold)]/10">
@@ -122,10 +122,10 @@ export default function AppLayout({
           
           <button 
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-heading tracking-wide text-red-400/80 hover:bg-red-400/10 transition-colors"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-heading tracking-wide text-foreground/70 hover:bg-red-400/10 transition-colors"
           >
             <LogOut size={18} />
-            Withdraw
+            Log Out
           </button>
         </div>
       </aside>

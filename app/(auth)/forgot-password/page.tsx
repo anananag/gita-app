@@ -31,13 +31,13 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="bg-card-bg border border-[var(--color-gold-muted)] p-8 rounded-2xl shadow-2xl backdrop-blur-sm">
+    <div className="bg-card-bg border border-[var(--color-gold-muted)] p-8 rounded-2xl shadow-2xl backdrop-blur-sm glow-box-amber">
       <div className="flex flex-col items-center mb-8">
-        <h1 className="text-3xl font-heading font-medium tracking-widest text-[var(--color-gold)] text-center uppercase">
-          Forgotten Path
+        <h1 className="text-3xl font-heading font-medium tracking-widest text-[var(--color-gold)] text-center glow-text">
+          Forgot Password
         </h1>
-        <p className="text-muted-foreground italic mt-2 text-center text-sm font-body">
-          Retrieve your access to the archive
+        <p className="text-muted-foreground mt-2 text-center text-sm font-body">
+          Retrieve access to your account
         </p>
       </div>
 
@@ -57,7 +57,7 @@ export default function ForgotPasswordPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Seeker ID (Email)"
+                placeholder="Email"
                 required
                 className="w-full bg-background/50 border border-[var(--color-gold)]/20 focus:border-[var(--color-gold)] rounded-lg py-3 pl-10 pr-4 outline-none transition-colors font-body text-foreground placeholder:text-foreground/30"
               />
@@ -73,7 +73,6 @@ export default function ForgotPasswordPage() {
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
               <>
-                <Book className="w-5 h-5" />
                 Send Reset Link
               </>
             )}
@@ -92,7 +91,7 @@ export default function ForgotPasswordPage() {
 
       <div className="mt-8 pt-6 border-t border-[var(--color-gold)]/10 flex flex-col items-center gap-4 text-sm font-body">
         <Link href="/login" className="text-foreground/70 hover:text-[var(--color-gold)] transition-colors uppercase tracking-wider text-xs">
-          Return to Entrance
+          Back to Log In
         </Link>
       </div>
     </div>

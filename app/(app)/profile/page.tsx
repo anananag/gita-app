@@ -89,25 +89,25 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <div className="mb-12 flex flex-col items-center border-b border-[var(--color-gold)]/10 pb-8 text-center">
-        <div className="w-20 h-20 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center border border-[var(--color-gold)]/20 mb-6 relative">
-          <User className="w-10 h-10 text-[var(--color-gold)]" />
-          <div className="absolute -bottom-2 -right-2 bg-background border border-[var(--color-gold)] rounded-full p-1">
+      <div className="mb-12 flex flex-col items-center border-b border-[var(--color-blue-glow)]/20 pb-8 text-center bg-[var(--color-blue-glow)]/5 rounded-xl glow-box-blue">
+        <div className="w-20 h-20 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center border border-[var(--color-gold)]/20 mb-6 relative shadow-inner">
+          <User className="w-10 h-10 text-[var(--color-gold)] glow-text" />
+          <div className="absolute -bottom-2 -right-2 bg-background border border-[var(--color-gold)] rounded-full p-1 glow-box-amber">
              <Flower2 className="w-4 h-4 text-[var(--color-gold)]" />
           </div>
         </div>
-        <h1 className="text-3xl font-heading text-[var(--color-gold)] uppercase tracking-widest">
-          Sacred Profile
+        <h1 className="text-3xl font-heading text-[var(--color-gold)] uppercase tracking-widest glow-text">
+          Your Account
         </h1>
-        <p className="font-body text-foreground/60 italic mt-2">
-          Seeker since {memberSince}
+        <p className="font-body text-foreground/60 mt-2">
+          Joined {memberSince}
         </p>
       </div>
 
-      <div className="bg-card-bg border border-[var(--color-gold)]/20 p-8 rounded-2xl space-y-8 shadow-sm">
+      <div className="bg-card-bg border border-[var(--color-gold)]/20 p-8 rounded-2xl space-y-8 shadow-sm glow-box-amber">
         <div className="space-y-4">
           <label className="block text-sm font-heading tracking-widest uppercase text-[var(--color-gold)]/80">
-            Seeker Name
+            Name
           </label>
           <input
             type="text"
@@ -119,7 +119,7 @@ export default function ProfilePage() {
 
         <div className="space-y-4">
           <label className="block text-sm font-heading tracking-widest uppercase text-foreground/50">
-            Archive ID (Email)
+            Email
           </label>
           <input
             type="email"
@@ -129,12 +129,12 @@ export default function ProfilePage() {
           />
         </div>
 
-        <div className="space-y-6 pt-4 border-t border-[var(--color-gold)]/10">
-          <label className="block text-sm font-heading tracking-widest uppercase text-[var(--color-gold)]/80">
-            Spiritual Focus Areas
+        <div className="space-y-6 pt-4 border-t border-[var(--color-blue-glow)]/10">
+          <label className="block text-sm font-heading tracking-widest uppercase text-[var(--color-gold)]/80 glow-text">
+            What matters to you right now?
           </label>
-          <p className="text-xs text-foreground/60 font-body italic mb-4">
-            Select areas of inquiry to ground your guidance.
+          <p className="text-sm text-foreground/60 font-body mb-4">
+            Select areas of life you want your conversation to gently focus around.
           </p>
           
           <div className="flex flex-wrap gap-3">
@@ -173,7 +173,7 @@ export default function ProfilePage() {
             className="bg-[var(--color-gold)] text-[#2c1810] px-8 py-3 rounded-lg font-heading uppercase tracking-widest hover:bg-[var(--color-gold)]/90 transition-colors flex items-center gap-2 disabled:opacity-50"
           >
             {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-            Embrace Changes
+            Save Changes
           </button>
         </div>
       </div>

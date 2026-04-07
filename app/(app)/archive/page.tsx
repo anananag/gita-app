@@ -15,24 +15,24 @@ export default async function ArchivePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <div className="mb-12 flex flex-col items-center border-b border-[var(--color-gold)]/10 pb-8 text-center">
-        <Scroll className="w-10 h-10 text-[var(--color-gold)] mb-4" />
-        <h1 className="text-3xl font-heading text-[var(--color-gold)] uppercase tracking-widest">
-          The Archive of Wisdom
+      <div className="mb-12 flex flex-col items-center border-b border-[var(--color-blue-glow)]/20 pb-8 text-center glow-box-blue rounded-xl bg-[var(--color-blue-glow)]/5">
+        <Scroll className="w-10 h-10 text-[var(--color-gold)] mb-4 glow-text" />
+        <h1 className="text-3xl font-heading text-[var(--color-gold)] uppercase tracking-widest glow-text">
+          Your Story
         </h1>
-        <p className="font-body text-foreground/60 italic mt-2">
-          Review your past contemplations and continue your journey
+        <p className="font-body text-foreground/80 mt-2">
+          Review your past conversations
         </p>
       </div>
 
       {(!conversations || conversations.length === 0) ? (
-        <div className="text-center py-24 bg-card-bg border border-[var(--color-gold)]/10 rounded-2xl">
-          <p className="font-body text-foreground/70 mb-6">Your archive is empty, seeker.</p>
+        <div className="text-center py-24 bg-card-bg border border-[var(--color-gold)]/10 rounded-2xl glow-box-amber">
+          <p className="font-body text-foreground/70 mb-6 font-medium">You don't have any saved conversations yet.</p>
           <Link 
             href="/inquiry/new" 
             className="inline-flex items-center justify-center bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/30 text-[var(--color-gold)] px-6 py-3 rounded-full hover:bg-[var(--color-gold)] hover:text-[#2c1810] transition-colors font-heading tracking-widest uppercase text-sm"
           >
-            Begin First Inquiry
+            Start a Conversation
           </Link>
         </div>
       ) : (

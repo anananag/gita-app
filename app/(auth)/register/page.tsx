@@ -41,16 +41,16 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="bg-card-bg border border-[var(--color-gold-muted)] p-8 rounded-2xl shadow-2xl backdrop-blur-sm">
+    <div className="bg-card-bg border border-[var(--color-gold-muted)] p-8 rounded-2xl shadow-2xl backdrop-blur-sm glow-box-amber">
       <div className="flex flex-col items-center mb-8">
-        <div className="w-12 h-12 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center mb-4 border border-[var(--color-gold)]/20">
+        <div className="w-12 h-12 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center mb-4 border border-[var(--color-gold)]/20 glow-box-amber">
           <Flower2 className="w-6 h-6 text-[var(--color-gold)]" />
         </div>
-        <h1 className="text-3xl font-heading font-medium tracking-widest text-[var(--color-gold)] text-center uppercase">
-          New Journey
+        <h1 className="text-3xl font-heading font-medium tracking-widest text-[var(--color-gold)] text-center glow-text">
+          Join GitaVerse
         </h1>
-        <p className="text-muted-foreground italic mt-2 text-center text-sm font-body">
-          Begin your path into the archive
+        <p className="text-muted-foreground mt-2 text-center text-sm font-body">
+          Start a thoughtful conversation
         </p>
       </div>
 
@@ -69,7 +69,7 @@ export default function RegisterPage() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Seeker Name"
+              placeholder="Name"
               required
               className="w-full bg-background/50 border border-[var(--color-gold)]/20 focus:border-[var(--color-gold)] rounded-lg py-3 pl-10 pr-4 outline-none transition-colors font-body text-foreground placeholder:text-foreground/30"
             />
@@ -81,7 +81,7 @@ export default function RegisterPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Seeker ID (Email)"
+              placeholder="Email"
               required
               className="w-full bg-background/50 border border-[var(--color-gold)]/20 focus:border-[var(--color-gold)] rounded-lg py-3 pl-10 pr-4 outline-none transition-colors font-body text-foreground placeholder:text-foreground/30"
             />
@@ -110,8 +110,7 @@ export default function RegisterPage() {
             <Loader2 className="w-5 h-5 animate-spin" />
           ) : (
             <>
-              <Book className="w-5 h-5" />
-              Initiate Journey
+              Sign Up
             </>
           )}
         </button>
@@ -119,7 +118,7 @@ export default function RegisterPage() {
 
       <div className="mt-8 pt-6 border-t border-[var(--color-gold)]/10 flex flex-col items-center gap-4 text-sm font-body">
         <Link href="/login" className="text-foreground/70 hover:text-[var(--color-gold)] transition-colors uppercase tracking-wider text-xs">
-          Return to Entrance
+          Back to Log In
         </Link>
       </div>
     </div>

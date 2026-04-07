@@ -28,11 +28,11 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 md:py-24">
       <div className="flex flex-col items-center text-center space-y-6 mb-16">
-        <Flower2 className="w-12 h-12 text-[var(--color-gold)] mb-4" />
-        <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-gold)] tracking-wide">
-          Seek eternal truth within.
+        <Flower2 className="w-12 h-12 text-[var(--color-gold)] mb-4 glow-text" />
+        <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-gold)] tracking-wide glow-text">
+          Talk to someone who gets it.
         </h1>
-        <p className="max-w-2xl text-lg font-body italic text-foreground/80 leading-relaxed gita-verse border-l-0 border-b pb-4 border-[var(--color-gold)]/30">
+        <p className="max-w-2xl text-lg font-body text-foreground/80 leading-relaxed -mt-2">
           {randomQuote}
         </p>
       </div>
@@ -40,22 +40,22 @@ export default async function DashboardPage() {
       <div className="flex justify-center mb-16">
         <Link 
           href={`/inquiry/new`}
-          className="group relative bg-[#131821] border border-[var(--color-gold)]/30 p-8 rounded-2xl flex flex-col items-center gap-4 hover:border-[var(--color-gold)] transition-colors w-full max-w-sm"
+          className="group relative bg-card-bg border border-[var(--color-gold)]/30 p-8 rounded-2xl flex flex-col items-center gap-4 hover:border-[var(--color-gold)] transition-all duration-300 w-full max-w-sm glow-box-amber hover:shadow-[0_0_40px_rgba(245,158,11,0.2)]"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-gold)]/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-          <div className="relative z-10 w-16 h-16 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center border border-[var(--color-gold)]/20 group-hover:scale-110 transition-transform">
+          <div className="relative z-10 w-16 h-16 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center border border-[var(--color-gold)]/20 group-hover:scale-110 transition-transform shadow-inner">
             <Plus className="w-8 h-8 text-[var(--color-gold)]" />
           </div>
           <span className="relative z-10 font-heading text-xl text-[var(--color-gold)] uppercase tracking-widest text-center">
-            Start a New Contemplation
+            Start a Conversation
           </span>
         </Link>
       </div>
 
       {conversations && conversations.length > 0 && (
         <div className="space-y-6">
-          <h2 className="font-heading text-xl text-foreground/90 uppercase tracking-widest text-center border-b border-[var(--color-gold)]/10 pb-4">
-            Past Wisdom
+          <h2 className="font-heading text-xl text-foreground/90 uppercase tracking-widest text-center border-b border-[var(--color-blue-glow)]/20 pb-4">
+            Recent Stories
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {conversations.map((conv) => (
@@ -78,7 +78,7 @@ export default async function DashboardPage() {
           {conversations.length === 3 && (
             <div className="flex justify-center mt-6">
               <Link href="/archive" className="text-sm font-heading uppercase tracking-widest text-[var(--color-gold)]/80 hover:text-[var(--color-gold)] transition-colors">
-                View Entire Archive
+                View Entire Story
               </Link>
             </div>
           )}

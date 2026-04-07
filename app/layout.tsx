@@ -15,8 +15,8 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Gita AI - Archivist of the Eternal Song",
-  description: "A wise, warm, and deeply human guide rooted in the Bhagavad Gita.",
+  title: "GitaVerse",
+  description: "Talk to someone who gets it. Thoughtful advice guided by the Gita.",
 };
 
 export default function RootLayout({

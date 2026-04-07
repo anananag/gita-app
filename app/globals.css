@@ -5,25 +5,28 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-gold: #c9a84c;
-  --color-gold-muted: rgba(201, 168, 76, 0.15);
+  --color-gold: #e2b34a;
+  --color-gold-muted: rgba(226, 179, 74, 0.15);
+  --color-amber: #f59e0b;
+  --color-saffron: #f97316;
+  --color-blue-glow: #3b82f6;
   --color-card-bg: var(--card-bg);
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 }
 
 :root {
-  /* Light Mode (Cream / Brown) */
-  --background: #f5ecd7;
+  /* Light Mode (Soft dawn/sunrise aesthetic) */
+  --background: #fdfaf3; /* warm off-white */
   --foreground: #2c1810;
-  --card-bg: #fdfaf3;
+  --card-bg: #ffffff;
 }
 
 .dark {
-  /* Dark Mode (Navy / Gold / Off-white) */
-  --background: #0d1117;
-  --foreground: #e8dcc8;
-  --card-bg: #161b22;
+  /* Dark Mode (Deep twilight blue to dawn aesthetic) */
+  --background: #060e1d; /* Deep twilight blue */
+  --foreground: #fcf9f2; /* luminous soft white */
+  --card-bg: #0d1526; /* Slightly lighter deep blue */
 }
 
 body {
@@ -31,12 +34,23 @@ body {
   color: var(--foreground);
 }
 
-/* Custom utility for verses */
 @layer utilities {
   .gita-verse {
     font-style: italic;
     border-left: 4px solid var(--color-gold);
     padding-left: 1rem;
     font-size: 1.125rem;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 15px rgba(226, 179, 74, 0.4);
+  }
+  
+  .glow-box-amber {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+  }
+  
+  .glow-box-blue {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
   }
 }

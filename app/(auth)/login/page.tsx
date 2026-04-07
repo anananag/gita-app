@@ -35,16 +35,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="bg-card-bg border border-[var(--color-gold-muted)] p-8 rounded-2xl shadow-2xl backdrop-blur-sm">
+    <div className="bg-card-bg border border-[var(--color-gold-muted)] p-8 rounded-2xl shadow-2xl backdrop-blur-sm glow-box-amber">
       <div className="flex flex-col items-center mb-8">
-        <div className="w-12 h-12 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center mb-4 border border-[var(--color-gold)]/20">
+        <div className="w-12 h-12 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center mb-4 border border-[var(--color-gold)]/20 glow-box-amber">
           <Flower2 className="w-6 h-6 text-[var(--color-gold)]" />
         </div>
-        <h1 className="text-3xl font-heading font-medium tracking-widest text-[var(--color-gold)] text-center uppercase">
-          Seeker's Entrance
+        <h1 className="text-3xl font-heading font-medium tracking-widest text-[var(--color-gold)] text-center glow-text">
+          Welcome Back
         </h1>
-        <p className="text-muted-foreground italic mt-2 text-center text-sm font-body">
-          Unlock the Ancient Wisdom
+        <p className="text-muted-foreground mt-2 text-center text-sm font-body">
+          Log in to continue your story
         </p>
       </div>
 
@@ -63,7 +63,7 @@ export default function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Seeker ID (Email)"
+              placeholder="Email"
               required
               className="w-full bg-background/50 border border-[var(--color-gold)]/20 focus:border-[var(--color-gold)] rounded-lg py-3 pl-10 pr-4 outline-none transition-colors font-body text-foreground placeholder:text-foreground/30"
             />
@@ -91,8 +91,7 @@ export default function LoginPage() {
             <Loader2 className="w-5 h-5 animate-spin" />
           ) : (
             <>
-              <Book className="w-5 h-5" />
-              Enter the Archive
+              Log In
             </>
           )}
         </button>
@@ -100,14 +99,14 @@ export default function LoginPage() {
 
       <div className="mt-8 pt-6 border-t border-[var(--color-gold)]/10 flex flex-col items-center gap-4 text-sm font-body">
         <Link href="/forgot-password" className="text-foreground/70 hover:text-[var(--color-gold)] transition-colors uppercase tracking-wider text-xs">
-          Forgotten Path?
+          Forgot Password?
         </Link>
         <Link href="/register" className="text-foreground/70 hover:text-[var(--color-gold)] transition-colors uppercase tracking-wider text-xs">
-          Initiate New Journey
+          Sign Up
         </Link>
       </div>
 
-      <div className="mt-8 text-center">
+      <div className="mt-8 text-center hidden">
         <p className="text-foreground/40 italic text-xs">
           "For one who has conquered the mind, the mind is the best of friends..."
         </p>
