@@ -6,9 +6,12 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
+  // Prevent crashing on initial Vercel build if env vars aren't set yet
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return supabaseResponse;
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder',
     {
       cookies: {
         getAll() {
@@ -31,32 +34,27 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Protect all routes inside /app/(app) hierarchy, and redirect / to login if not logged in.
   const isAuthRoute = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/register') || request.nextUrl.pathname.startsWith('/forgot-password')
   
   if (!user && !isAuthRoute && !request.nextUrl.pathname.startsWith('/api') && !request.nextUrl.pathname.startsWith('/_next') && request.nextUrl.pathname !== '/') {
-    // If no user and trying to access protected route, redirect to login
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
   }
   
   if (!user && request.nextUrl.pathname === '/') {
-    // Redirect root to login if not logged in
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
   }
 
   if (user && isAuthRoute) {
-    // If logged in and on auth route, redirect to dashboard
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
     return NextResponse.redirect(url)
   }
 
   if (user && request.nextUrl.pathname === '/') {
-    // If logged in and on root, redirect to dashboard
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
     return NextResponse.redirect(url)
