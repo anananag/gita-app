@@ -30,7 +30,7 @@ export default async function DashboardPage() {
       <div className="flex flex-col items-center text-center space-y-6 mb-16">
         <Flower2 className="w-12 h-12 text-[var(--color-gold)] mb-4 glow-text" />
         <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-gold)] tracking-wide glow-text">
-          Talk to someone who gets it.
+          Discover clarity within.
         </h1>
         <p className="max-w-2xl text-lg font-body text-foreground/80 leading-relaxed -mt-2">
           {randomQuote}

@@ -73,7 +73,7 @@ export default function AppLayout({
       )}>
         <div className="p-6 border-b border-[var(--color-gold)]/10 hidden md:block">
           <h1 className="font-heading text-3xl text-[var(--color-gold)] tracking-widest uppercase glow-text">GitaVerse</h1>
-          <p className="font-body text-xs italic text-foreground/60 mt-1">Talk to someone who gets it.</p>
+          <p className="font-body text-xs italic text-[var(--color-gold)]/80 mt-1">Inner guidance for modern life.</p>
         </div>
 
         <div className="p-6 border-b border-[var(--color-gold)]/10">

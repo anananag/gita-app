@@ -16,7 +16,7 @@ const ebGaramond = EB_Garamond({
 
 export const metadata: Metadata = {
   title: "GitaVerse",
-  description: "Talk to someone who gets it. Thoughtful advice guided by the Gita.",
+  description: "Inner guidance for modern life. Find peace and perspective.",
 };
 
 export default function RootLayout({

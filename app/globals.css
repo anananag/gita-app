@@ -24,9 +24,9 @@
 
 .dark {
   /* Dark Mode (Vibrant twilight blue to dawn aesthetic) */
-  --background: #0f172a; /* Slate 900 - Brighter twilit sky */
+  --background: #091129; /* Deep, rich sapphire/indigo sky */
   --foreground: #f8fafc; /* Luminous soft white */
-  --card-bg: #1e293b; /* Slate 800 - Lighter card bg for contrast */
+  --card-bg: #111d40; /* Richer deep blue for cards */
 }
 
 body {
