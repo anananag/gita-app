@@ -5,28 +5,46 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-gold: #fde047;
-  --color-gold-muted: rgba(253, 224, 71, 0.25);
-  --color-amber: #fbbf24;
-  --color-saffron: #f97316;
-  --color-blue-glow: #60a5fa;
+  --color-gold: var(--gold);
+  --color-gold-muted: var(--gold-muted);
+  --color-amber: var(--amber);
+  --color-saffron: var(--saffron);
+  --color-blue-glow: var(--blue-glow);
   --color-card-bg: var(--card-bg);
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 }
 
 :root {
-  /* Light Mode (Soft dawn/sunrise aesthetic) */
-  --background: #fffdfa; /* even brighter warm off-white */
-  --foreground: #2c1810;
-  --card-bg: #ffffff;
+  /* Light Mode (Soft dawn/sky aesthetic) */
+  --background: #f0f9ff; /* Sky 50 - Very light serene blue */
+  --foreground: #0f172a; /* Slate 900 */
+  --card-bg: #e0f2fe; /* Sky 100 - lightly tinted cards */
+  --gold: #b45309; /* Amber 700 - Darker yellow/gold for high contrast */
+  --gold-muted: rgba(180, 83, 9, 0.15);
+  --amber: #d97706; /* Amber 600 */
+  --saffron: #c2410c; /* Orange 700 */
+  --blue-glow: #e0f2fe; /* Light calm blue */
+  /* Softer shadows for light mode */
+  --glow-text-shadow: 0 0 6px rgba(180, 83, 9, 0.2);
+  --glow-box-amber-shadow: 0 0 20px rgba(217, 119, 6, 0.1);
+  --glow-box-blue-shadow: 0 0 30px rgba(186, 230, 253, 0.3);
 }
 
 .dark {
-  /* Dark Mode (Vibrant twilight blue to dawn aesthetic) */
-  --background: #091129; /* Deep, rich sapphire/indigo sky */
-  --foreground: #f8fafc; /* Luminous soft white */
-  --card-bg: #111d40; /* Richer deep blue for cards */
+  /* Dark Mode (Deep, rich sapphire/indigo sky) */
+  --background: #091129; 
+  --foreground: #f8fafc; 
+  --card-bg: #111d40; 
+  --gold: #fde047; /* Electric bright gold */
+  --gold-muted: rgba(253, 224, 71, 0.25);
+  --amber: #fbbf24;
+  --saffron: #f97316;
+  --blue-glow: #60a5fa;
+  /* Intense, luminous glows for dark mode */
+  --glow-text-shadow: 0 0 20px rgba(253, 224, 71, 0.7), 0 0 40px rgba(251, 191, 36, 0.4);
+  --glow-box-amber-shadow: 0 0 40px rgba(251, 191, 36, 0.25), inset 0 0 15px rgba(253, 224, 71, 0.05);
+  --glow-box-blue-shadow: 0 0 50px rgba(96, 165, 250, 0.2);
 }
 
 body {
@@ -43,14 +61,14 @@ body {
   }
   
   .glow-text {
-    text-shadow: 0 0 20px rgba(253, 224, 71, 0.7), 0 0 40px rgba(251, 191, 36, 0.4);
+    text-shadow: var(--glow-text-shadow);
   }
   
   .glow-box-amber {
-    box-shadow: 0 0 40px rgba(251, 191, 36, 0.25), inset 0 0 15px rgba(253, 224, 71, 0.05);
+    box-shadow: var(--glow-box-amber-shadow);
   }
   
   .glow-box-blue {
-    box-shadow: 0 0 50px rgba(96, 165, 250, 0.2);
+    box-shadow: var(--glow-box-blue-shadow);
   }
 }
