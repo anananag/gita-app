@@ -5,11 +5,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-gold: #e2b34a;
-  --color-gold-muted: rgba(226, 179, 74, 0.15);
-  --color-amber: #f59e0b;
+  --color-gold: #fde047;
+  --color-gold-muted: rgba(253, 224, 71, 0.25);
+  --color-amber: #fbbf24;
   --color-saffron: #f97316;
-  --color-blue-glow: #3b82f6;
+  --color-blue-glow: #60a5fa;
   --color-card-bg: var(--card-bg);
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
@@ -17,16 +17,16 @@
 
 :root {
   /* Light Mode (Soft dawn/sunrise aesthetic) */
-  --background: #fdfaf3; /* warm off-white */
+  --background: #fffdfa; /* even brighter warm off-white */
   --foreground: #2c1810;
   --card-bg: #ffffff;
 }
 
 .dark {
-  /* Dark Mode (Deep twilight blue to dawn aesthetic) */
-  --background: #060e1d; /* Deep twilight blue */
-  --foreground: #fcf9f2; /* luminous soft white */
-  --card-bg: #0d1526; /* Slightly lighter deep blue */
+  /* Dark Mode (Vibrant twilight blue to dawn aesthetic) */
+  --background: #0f172a; /* Slate 900 - Brighter twilit sky */
+  --foreground: #f8fafc; /* Luminous soft white */
+  --card-bg: #1e293b; /* Slate 800 - Lighter card bg for contrast */
 }
 
 body {
@@ -43,14 +43,14 @@ body {
   }
   
   .glow-text {
-    text-shadow: 0 0 15px rgba(226, 179, 74, 0.4);
+    text-shadow: 0 0 20px rgba(253, 224, 71, 0.7), 0 0 40px rgba(251, 191, 36, 0.4);
   }
   
   .glow-box-amber {
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.25), inset 0 0 15px rgba(253, 224, 71, 0.05);
   }
   
   .glow-box-blue {
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 50px rgba(96, 165, 250, 0.2);
   }
 }

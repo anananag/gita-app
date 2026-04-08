@@ -132,13 +132,15 @@ export default function AppLayout({
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <div className="absolute top-0 left-1/4 w-[1000px] h-[1000px] bg-gradient-to-br from-[var(--color-blue-glow)]/15 via-[var(--color-amber)]/10 to-[var(--color-gold)]/5 rounded-full blur-[100px] pointer-events-none opacity-60 dark:opacity-100" />
+        
         <div className="absolute top-0 right-0 p-4 z-10 hidden md:block">
            <Link href="/dashboard" className="px-4 py-2 border border-[var(--color-gold)]/30 rounded-full text-xs uppercase tracking-widest text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 transition-colors flex items-center gap-2 font-heading">
              <PlusCircle size={14} />
              New Inquiry
            </Link>
         </div>
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto relative z-10">
           {children}
         </div>
       </main>
