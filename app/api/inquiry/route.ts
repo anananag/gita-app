@@ -96,7 +96,11 @@ export async function POST(req: Request) {
       }))
 
     // Call Gemini
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+    if (!process.env.GEMINI_API_KEY) {
+      console.error('GEMINI_API_KEY is not set')
+      return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
+    }
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
     const model = genAI.getGenerativeModel({
       model: 'gemini-2.0-flash',
       systemInstruction: dynamicSystemPrompt,
@@ -129,8 +133,8 @@ export async function POST(req: Request) {
       response: aiMessageContent 
     })
 
-  } catch (error) {
-    console.error('Inquiry Error:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+  } catch (error: any) {
+    console.error('Inquiry Error:', error?.message || error)
+    return NextResponse.json({ error: 'Internal Server Error', detail: error?.message }, { status: 500 })
   }
 }
