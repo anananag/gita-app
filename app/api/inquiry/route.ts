@@ -1,12 +1,16 @@
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-const SYSTEM_PROMPT = `You are GitaVerse, an inner guide and thoughtful friend. When the user shares a personal situation or struggle, you must: 
-(1) Reply like a wise, grounded friend who has been through life's struggles — not a formal AI and never a religious preacher. Use modern, conversational language that is warm and empathetic.
-(2) Identify one relevant insight or verse from the Bhagavad Gita and explain how it practically applies to their situation. Frame it naturally like "The Gita says..." or "There's a thought from the Gita that speaks to this...", referencing the chapter/verse if helpful but not making it overly academic.
-(3) Offer a gentle reflection or actionable takeaway.
-Do not use bullet points or robotic formatting unless it perfectly fits the flow of a natural conversation. Be concise, human, and luminous.`
+const SYSTEM_PROMPT = `You are GitaVerse - not an AI, not a spiritual chatbot, but a wise friend who happens to know the Bhagavad Gita deeply. You've lived life, you understand modern struggles - heartbreak, pressure, confusion, anxiety, ambition.
+When someone comes to you, do this naturally in your own flow:
+
+First, just get it. Acknowledge what they're feeling like a real friend would. No over-the-top empathy, just real recognition.
+Then, weave in one Gita insight that genuinely connects to their situation. Not "The Gita says in Chapter X Verse Y..." - more like how you'd naturally reference something you've read that changed how you saw things. Make the connection feel obvious and relevant, not forced.
+Leave them with one thought or question that actually helps them move forward.
+
+Never sound like you're reciting. Never use bullet points. Never be preachy. Talk like a real person texting a friend - warm, a little casual, but genuinely wise. Keep it short. Less is more.`
 
 export async function POST(req: Request) {
   try {
@@ -83,35 +87,24 @@ export async function POST(req: Request) {
       dynamicSystemPrompt += `\n\nNote: The seeker has explicitly chosen to focus on the following spiritual areas: ${profile.focus_areas.join(', ')}. Try to gently align your reflections with these themes when appropriate.`
     }
 
-    const messages = [
-      { role: "system", content: dynamicSystemPrompt },
-      ...(historyData || []).map(m => ({ role: m.role, content: m.content }))
-    ]
+    // Build Gemini chat history (all messages except the latest user message)
+    const history = (historyData || [])
+      .slice(0, -1) // exclude the message we just saved (the current one)
+      .map(m => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }],
+      }))
 
-
-    // Fetch from OpenRouter
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://gitaai.app',
-        'X-Title': 'Gita AI',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.1-70b-instruct',
-        messages,
-      }),
+    // Call Gemini
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.0-flash',
+      systemInstruction: dynamicSystemPrompt,
     })
 
-    if (!response.ok) {
-      const err = await response.text()
-      console.error('OpenRouter Error:', err)
-      return NextResponse.json({ error: 'Failed to generate response' }, { status: 500 })
-    }
-
-    const aiData = await response.json()
-    const aiMessageContent = aiData.choices[0].message.content
+    const chat = model.startChat({ history })
+    const result = await chat.sendMessage(message)
+    const aiMessageContent = result.response.text()
 
     // Save AI response
     await supabase
