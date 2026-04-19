@@ -57,7 +57,7 @@ export default function AppLayout({
   ]
 
   return (
-    <div className="min-h-screen bg-background flex flex-col md:flex-row transition-colors duration-300">
+    <div className="h-screen overflow-hidden bg-background flex flex-col md:flex-row transition-colors duration-300">
       {/* Mobile Top Bar */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-[var(--color-gold)]/10 glow-box-blue">
         <h1 className="font-heading text-xl text-[var(--color-gold)] tracking-widest uppercase glow-text">GitaVerse</h1>
@@ -131,7 +131,7 @@ export default function AppLayout({
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
+      <main className="flex-1 flex flex-col overflow-hidden relative">
         <div className="absolute top-0 left-1/4 w-[1000px] h-[1000px] bg-gradient-to-br from-[var(--color-blue-glow)]/15 via-[var(--color-amber)]/10 to-[var(--color-gold)]/5 rounded-full blur-[100px] pointer-events-none opacity-60 dark:opacity-100" />
         
         <div className="absolute top-0 right-0 p-4 z-10 hidden md:block">
@@ -140,7 +140,7 @@ export default function AppLayout({
              New Inquiry
            </Link>
         </div>
-        <div className="flex-1 overflow-y-auto relative z-10">
+        <div className="flex-1 h-full overflow-y-auto relative z-10">
           {children}
         </div>
       </main>
