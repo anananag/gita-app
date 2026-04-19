@@ -102,7 +102,7 @@ export async function POST(req: Request) {
     }
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-1.5-flash',
       systemInstruction: dynamicSystemPrompt,
     })
 
@@ -135,6 +135,8 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     console.error('Inquiry Error:', error?.message || error)
+    console.error('Error status:', error?.status)
+    console.error('Error details:', JSON.stringify(error?.errorDetails || error?.response || ''))
     return NextResponse.json({ error: 'Internal Server Error', detail: error?.message }, { status: 500 })
   }
 }
