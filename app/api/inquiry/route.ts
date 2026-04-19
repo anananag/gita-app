@@ -1,4 +1,3 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
@@ -87,28 +86,44 @@ export async function POST(req: Request) {
       dynamicSystemPrompt += `\n\nNote: The seeker has explicitly chosen to focus on the following spiritual areas: ${profile.focus_areas.join(', ')}. Try to gently align your reflections with these themes when appropriate.`
     }
 
-    // Build Gemini chat history (all messages except the latest user message)
-    const history = (historyData || [])
-      .slice(0, -1) // exclude the message we just saved (the current one)
-      .map(m => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }],
-      }))
+    // Build Gemini conversation (history + current message)
+    const contents = [
+      ...(historyData || [])
+        .slice(0, -1) // exclude the just-saved user message
+        .map(m => ({
+          role: m.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: m.content }],
+        })),
+      { role: 'user', parts: [{ text: message }] },
+    ]
 
-    // Call Gemini
+    // Call Gemini via REST (v1 stable endpoint)
     if (!process.env.GEMINI_API_KEY) {
       console.error('GEMINI_API_KEY is not set')
       return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
     }
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
-      systemInstruction: dynamicSystemPrompt,
-    })
 
-    const chat = model.startChat({ history })
-    const result = await chat.sendMessage(message)
-    const aiMessageContent = result.response.text()
+    const geminiRes = await fetch(
+      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: dynamicSystemPrompt }] },
+          contents,
+          generationConfig: { temperature: 0.9, maxOutputTokens: 1024 },
+        }),
+      }
+    )
+
+    if (!geminiRes.ok) {
+      const errText = await geminiRes.text()
+      console.error('Gemini API Error:', geminiRes.status, errText)
+      return NextResponse.json({ error: 'Failed to generate response', detail: errText }, { status: 500 })
+    }
+
+    const geminiData = await geminiRes.json()
+    const aiMessageContent = geminiData.candidates[0].content.parts[0].text
 
     // Save AI response
     await supabase
