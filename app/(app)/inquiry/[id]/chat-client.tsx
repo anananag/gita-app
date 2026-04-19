@@ -84,7 +84,7 @@ export default function InquiryChatClient({
   }
 
   return (
-    <div className="absolute inset-0 flex flex-col bg-background">
+    <div className="fixed inset-0 md:left-64 z-20 flex flex-col bg-background">
       {/* Header */}
       <header className="p-4 border-b border-[var(--color-blue-glow)]/20 bg-card-bg/50 backdrop-blur flex items-center justify-between z-10 shrink-0 glow-box-blue">
         <div className="flex items-center gap-3">
